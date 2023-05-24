@@ -1,11 +1,15 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box} from "@material-ui/core";
+
+import Safe from "../components/Safe";
 
 const SetUpPage = () => {
     return (
-        <Box>
-            <Typography variant="h4">
-                This will be the Set up page.
-            </Typography>
+        <Box sx={{
+            minHeight: "50vh",
+            display: "flex",
+            alignItems: 'center',
+        }}>
+            <Safe />
         </Box>
     )
 }
