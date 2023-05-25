@@ -27,22 +27,30 @@ const Safe = () => {
 
     return (
         <Box sx={{ 
-            width: '90%',
+            minWidth: '950px',
             mx: "auto",
+            padding: "30px",
             }}>
         <Paper elevation={3}>
         <Box sx={{
-             width: '80%',
+            width: '80%',
              mx: "auto",
+             minHeight: "50vh",
              py: "25px", 
+        }}>
+        <Box sx={{
+            marginBottom: "30px",
              }}>
         <Grid container>
             {boxes.map(box => (
+                <>
                 <MoneyBox box={box} deleteMoneyBox={deleteMoneyBox} />
+                </>
             ))}
             {showForm && <MoneyBoxInput handleSubmit={handleSubmit} />}
         </Grid>
-        <Box>
+        </Box>
+        <Box >
             <Button 
             variant="contained" 
             color="secondary"
