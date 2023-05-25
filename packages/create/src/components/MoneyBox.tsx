@@ -25,7 +25,7 @@ const useStyles = makeStyles({
       alignItems: 'center',
       justifyContent: 'center',
       height: '100%',
-      paddingBottom: "0",
+      padding: "10px"
     },
   });
 
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     );
   }
 const MoneyBox = ({box, deleteMoneyBox}: MoneyBoxProps) => {
-    const {id, name, percent, onMoneyArrival} = box
+    const {id, name, percent, onMoneyArrival} = box;
     return (
         <>
         <Grid 
@@ -71,10 +71,8 @@ const MoneyBox = ({box, deleteMoneyBox}: MoneyBoxProps) => {
                <DeleteIcon />
             </IconButton>
             </CenteredGridItem>
-            <Grid item xs={12}>
-            <Box sx={{ marginBottom: "15px"}}>
-            <Divider />
-            </Box>
+            <Grid item xs={12} >
+            <Divider/>
             </Grid>
         </Grid>
         </>

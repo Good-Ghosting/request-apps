@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Grid, Paper, Box, Button } from "@material-ui/core";
+import { Grid, Paper, Box, Button, makeStyles, } from "@material-ui/core";
 import MoneyBox from "./MoneyBox";
 import MoneyBoxInput from "./MoneyBoxInput";
 
@@ -12,7 +12,19 @@ export type moneyBox = {
 
  type SubmitHandler = (data: moneyBox) => void;
 
+ const useStyles = makeStyles({
+    addButton: {
+        minHeight: "30px",
+        minWidth: "100px",
+        height: "20px",
+        fontSize: "14px",
+        padding: "12px",
+        color: "#fff",
+    }
+ })
+
 const Safe = () => {
+    const classes = useStyles();
     const [boxes, setBoxes] = useState<moneyBox[]>([]);
     const [showForm, setShowForm] = useState<Boolean>(false);
 
@@ -39,7 +51,7 @@ const Safe = () => {
              py: "25px", 
         }}>
         <Box sx={{
-            marginBottom: "30px",
+            marginBottom: "15px",
              }}>
         <Grid container>
             {boxes.map(box => (
@@ -47,11 +59,15 @@ const Safe = () => {
                 <MoneyBox box={box} deleteMoneyBox={deleteMoneyBox} />
                 </>
             ))}
-            {showForm && <MoneyBoxInput handleSubmit={handleSubmit} />}
+            {(showForm || boxes.length === 0)  && <MoneyBoxInput handleSubmit={handleSubmit} />}
         </Grid>
         </Box>
-        <Box >
+        <Box sx={{
+            display: "flex",
+            justifyContent: "end"
+        }} >
             <Button 
+            className={classes.addButton}
             variant="contained" 
             color="secondary"
             onClick={() => setShowForm(true)}

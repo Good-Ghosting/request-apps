@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, TextField, Button, Typography } from "@material-ui/core";
 import { v4 as uuidv4 } from 'uuid';
 import { moneyBox } from "./Safe";
+import { CenteredGridItem } from "./MoneyBox";
 
 type MoneyBoxInputProps = {
     handleSubmit: (data: moneyBox) => void;
@@ -23,37 +24,40 @@ const MoneyBoxInput = ({handleSubmit}: MoneyBoxInputProps) => {
         handleSubmit(data);
       };
     return (
-        <Grid container item spacing={3}>
-        <Grid item xs={3}>
+        <Grid container item>
+        <CenteredGridItem item xs={4}>
+            <Typography variant="h5">Money Box Name</Typography>
             <TextField 
             variant="outlined" 
             value={name}
             onChange={(e) => setName(e.target.value)}
             />
-        </Grid>
-        <Grid item xs={3}>
+        </CenteredGridItem>
+        <CenteredGridItem item xs={2}>
+         <Typography variant="h5">%</Typography>
          <TextField 
          variant="outlined" 
          type="number"
          value={percent}
          onChange={(e) => setPercent(Number(e.target.value))}
          />
-        </Grid>
-        <Grid item xs={4}>
+        </CenteredGridItem>
+        <CenteredGridItem item xs={4}>
+        <Typography variant="h5">On Money Arrival</Typography>
          <TextField 
          variant="outlined" 
          value={arrival}
          onChange={(e) => setArrival(e.target.value)}
          />
-        </Grid>
-        <Grid item xs={2}>
+        </CenteredGridItem>
+        <CenteredGridItem item xs={2}>
         <Button 
         variant="outlined" 
         size="small" 
         color="primary"
         onClick={handleFormSubmit}
         >Submit</Button>
-        </Grid>
+        </CenteredGridItem>
     </Grid>
     )
 }
