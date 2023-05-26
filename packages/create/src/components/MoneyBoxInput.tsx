@@ -46,9 +46,17 @@ const MoneyBoxInput = ({handleSubmit}: MoneyBoxInputProps) => {
         <Typography variant="h5">On Money Arrival</Typography>
          <TextField 
          variant="outlined" 
+         select
          value={arrival}
          onChange={(e) => setArrival(e.target.value)}
-         />
+         SelectProps={{
+          native: true,
+         }}
+         >
+          <option>Invest on Aave</option>
+          <option>Do Nothing</option>
+          <option>Convert to USDC</option>
+         </TextField>
         </CenteredGridItem>
         <CenteredGridItem item xs={2}>
         <Button 
