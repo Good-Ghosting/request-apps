@@ -20,6 +20,7 @@ import NotFoundPage from "./containers/NotFoundPage";
 import RequestPage from "./containers/RequestPage";
 import DashboardPage from "./containers/DashboardPage";
 import SetUpPage from "./containers/SetUpPage";
+import PortfolioPage from "./containers/PortfolioPage";
 import { useEagerConnect } from "./hooks/useEagerConnect";
 import { useInactiveListener } from "./hooks/useInactiveListnerer";
 import { useConnectedUser, UserProvider } from "./contexts/UserContext";
@@ -130,6 +131,7 @@ const AppInner: React.FC = () => {
                 <Route path="/" exact component={CreatePage} />
                 <Route path="/dashboard" component={DashboardPage} />
                 <Route path="/set-up" component={SetUpPage} />
+                <Route path="/portfolio" component={PortfolioPage} />
                 <Route path="/:id([0-9a-fA-F]+)" component={RequestPage} />
                 <Route path="*" component={NotFoundPage} />
               </Switch>

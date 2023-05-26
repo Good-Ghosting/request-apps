@@ -171,6 +171,13 @@ export const RequestAppBar = ({
       >
         <Typography variant="h4">Set up</Typography>
       </NavLink>
+      <NavLink
+        activeClassName={classes.active}
+        className={className}
+        to="/portfolio"
+      >
+        <Typography variant="h4">Portfolio</Typography>
+      </NavLink>
       <Hidden smUp>
         <Link id="intercom-trigger">
           <Typography variant="h4">Get Help</Typography>
