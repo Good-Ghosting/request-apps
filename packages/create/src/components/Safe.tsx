@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Grid, Paper, Box, Button, makeStyles, } from "@material-ui/core";
+import { Grid, Paper, Box, Button, makeStyles, Typography } from "@material-ui/core";
 import MoneyBox from "./MoneyBox";
 import MoneyBoxInput from "./MoneyBoxInput";
 
@@ -12,14 +12,22 @@ export type moneyBox = {
 
  type SubmitHandler = (data: moneyBox) => void;
 
+ const buttonStyle = {
+    minHeight: "30px",
+    minWidth: "100px",
+    height: "20px",
+    fontSize: "14px",
+    padding: "12px",
+ }
+
  const useStyles = makeStyles({
     addButton: {
-        minHeight: "30px",
-        minWidth: "100px",
-        height: "20px",
-        fontSize: "14px",
-        padding: "12px",
+        ...buttonStyle,
         color: "#fff",
+    },
+    deleteButton: {
+        ...buttonStyle,
+        marginRight: "10px",
     }
  })
 
@@ -64,8 +72,14 @@ const Safe = () => {
         </Box>
         <Box sx={{
             display: "flex",
-            justifyContent: "end"
+            justifyContent: "end",
+            alignItems: "center"
         }} >
+            <Box sx={{
+                marginRight: "300px",
+            }}>
+                <Typography variant="h5">Total: 100 %</Typography>
+            </Box>
             <Button 
             className={classes.addButton}
             variant="contained" 
@@ -73,6 +87,26 @@ const Safe = () => {
             onClick={() => setShowForm(true)}
             >
                 Add Box
+            </Button>
+        </Box>
+        <Box sx={{
+            marginTop: "50px",
+            display: "flex",
+            justifyContent: "center",
+        }}>
+            <Button
+            className={classes.deleteButton}
+            variant="outlined" 
+            color="primary"
+            >
+                Cancel
+            </Button>
+            <Button
+            className={classes.addButton}
+            variant="contained" 
+            color="secondary"
+            >
+            Confirm
             </Button>
         </Box>
         </Box>
