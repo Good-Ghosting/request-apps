@@ -44,7 +44,7 @@ const CardBox = ({card}: CardBoxProps) => {
             const coinName= tokenName.toLowerCase()
             try {
               const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinName}`);
-              setCoin((response.data.market_data.current_price.usd).toFixed(2) * token);
+              setCoin(response.data.market_data.current_price.usd * token);
             } catch (error) {
               console.error("error: " + error);
             }
@@ -55,7 +55,7 @@ const CardBox = ({card}: CardBoxProps) => {
     <>
     <GridCard item xs={2}>{tokenName}</GridCard>
         <GridCard  item xs={2}>{token}</GridCard>
-        <GridCard item xs={3}>{coin ?? token} usd</GridCard>
+        <GridCard item xs={3}>{coin?.toFixed(2) ?? token} usd</GridCard>
         <GridCard  item xs={5}>
             <Box sx={{display: "flex"}}>
                 <IconButton color="secondary">

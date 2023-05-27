@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { RLogo } from "request-ui";
+import Logo from '../assets/img/hacklogo.png'
 import { Link, Hidden } from "@material-ui/core";
 
 import {
@@ -192,7 +192,7 @@ export const RequestAppBar = ({
         <Box display="flex" alignItems="center" flex={1} height="100%">
           <Box marginRight={"20px"}>
             <NavLink to="/">
-              <RLogo />
+              <img src={Logo} alt="logo" style={{width: "150px", height: "auto"}} />
             </NavLink>
           </Box>
           <Box
