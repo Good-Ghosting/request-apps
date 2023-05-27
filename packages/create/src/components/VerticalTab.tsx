@@ -1,6 +1,24 @@
 import * as React from 'react';
 import { Tabs, Tab, Typography, Box, Grid, Button } from '@material-ui/core';
+import { cardInfo } from './MoneyBoxCard';
+import MoneyBoxCard from './MoneyBoxCard';
+import { allInfo } from '../containers/PortfolioPage';
 
+
+const cardData: cardInfo[] = [
+    {tokenName: "Wmatic",
+    token: 50,
+    usd: "50",
+},
+{tokenName: "USDC",
+token: 100,
+usd: "50",
+},
+{tokenName: "DAI",
+token: 70,
+usd: "65",
+}
+]
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -11,6 +29,8 @@ interface TabPanelProps {
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
+  console.log("children",)
+
   return (
     <div
       role="tabpanel"
@@ -20,9 +40,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+            <>{children}</>
       )}
     </div>
   );
@@ -35,7 +53,11 @@ function a11yProps(index: number) {
   };
 }
 
-export default function VerticalTabs() {
+type TabProps = {
+    data: allInfo[]
+}
+
+export default function VerticalTabs({data}: TabProps) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: any) => {
@@ -46,6 +68,7 @@ export default function VerticalTabs() {
     <Box
       sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224, }}
     >
+    <Box sx={{minWidth: "150px"}}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -53,60 +76,14 @@ export default function VerticalTabs() {
         onChange={handleChange}
         aria-label="Vertical tabs example"
       >
-        <Tab label="Item One" {...a11yProps(0)} />
-        <Tab label="Item Two" {...a11yProps(1)} />
-        <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        {data.map((item) => <Tab label={item.box.name} {...a11yProps(Number(item.box.id))}  />)}
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <Box>
-        <Typography variant='h5'>Taxes</Typography>
-        <Typography variant='h5'>100 USD</Typography>
-        </Box>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>USDC</Grid>
-        <Grid item xs={2}>50</Grid>
-        <Grid item xs={3}> 50 USD</Grid>
-        <Grid item xs={5}>
-            <Box sx={{display: "flex"}}>
-                <Button>A</Button>
-                <Button>D</Button>
-                <Button>T</Button>
-            </Box>
-        </Grid>
-        <Grid item xs={2}>USDC</Grid>
-        <Grid item xs={2}>50</Grid>
-        <Grid item xs={3}> 50 USD</Grid>
-        <Grid item xs={5}>
-            <Box sx={{display: "flex"}}>
-                <Button>A</Button>
-                <Button>D</Button>
-                <Button>T</Button>
-            </Box>
-        </Grid>
-      </Grid>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel>
+      </Box>
+      <Box sx={{padding: "15px"}}>
+      {data.map(item => <TabPanel value={Number(item.box.id)} index={Number(item.box.id)}>
+        <MoneyBoxCard boxes={item.card} />
+      </TabPanel>)}
+      </Box>
     </Box>
   );
 }

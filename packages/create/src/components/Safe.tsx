@@ -8,6 +8,7 @@ export type moneyBox = {
     name: string,
     percent: number,
     onMoneyArrival: string,
+    // tokens: [{...add tokens here that are of type cardInfo defined in MoneyBoxCard}]
 }
 
  type SubmitHandler = (data: moneyBox) => void;

@@ -1,6 +1,34 @@
 import { Box, Typography, Grid, Paper, Divider } from "@material-ui/core";
 import PieChart, {MoneyBoxPieChart} from "../components/PieChart";
 import VerticalTabs from "../components/VerticalTab";
+import { moneyBox } from "../components/Safe";
+import { cardInfo } from "../components/MoneyBoxCard";
+
+export type allInfo = {
+    box: moneyBox,
+    card: cardInfo[],
+}
+
+const data: allInfo[] = [{
+    box: {
+        id: "2",
+        name: "Tax",
+        percent: 10,
+        onMoneyArrival: "Do Nothing"
+    },
+    card: [  {tokenName: "Wmatic",
+    token: 50,
+    usd: "50",
+},
+{tokenName: "USDC",
+token: 100,
+usd: "50",
+},
+{tokenName: "DAI",
+token: 70,
+usd: "65",
+}]
+}]
 
 const PortfolioPage = () => {
     return (
@@ -66,7 +94,7 @@ const PortfolioPage = () => {
                         <MoneyBoxPieChart />
                     </Box>
                     <Box>
-                        <VerticalTabs />
+                        <VerticalTabs data={data} />
                     </Box>
                     </Box>
                 </Box>
