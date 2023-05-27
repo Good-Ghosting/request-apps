@@ -1,5 +1,6 @@
 import { Box, Typography, Grid, Paper, Divider } from "@material-ui/core";
 import PieChart, {MoneyBoxPieChart} from "../components/PieChart";
+import VerticalTabs from "../components/VerticalTab";
 
 const PortfolioPage = () => {
     return (
@@ -48,7 +49,7 @@ const PortfolioPage = () => {
                             </Grid>
                         </Box>
                         <Box sx={{
-                            maxWidth: "40%"
+                            maxWidth: "35%"
                         }}>
                         <PieChart />
                         </Box>
@@ -57,13 +58,15 @@ const PortfolioPage = () => {
                     <Divider />
                     <Box sx={{
                         display: "flex",
-                        justifyContent: "space-between"
                     }}>
                     <Box  sx={{
-                            maxWidth: "40%",
-                            margin: "20px 0px"
+                            maxWidth: "35%",
+                            margin: "20px"
                         }}>
                         <MoneyBoxPieChart />
+                    </Box>
+                    <Box>
+                        <VerticalTabs />
                     </Box>
                     </Box>
                 </Box>

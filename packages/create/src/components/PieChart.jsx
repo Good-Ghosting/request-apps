@@ -15,9 +15,8 @@ export const fundsData = {
         '#13274F',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(54, 102, 335, 0.2)',
+        'rgba(124, 185, 232, 0.5)',
+        'rgba(19, 39, 79, 0.5)',
       ],
       borderWidth: 1,
     },
