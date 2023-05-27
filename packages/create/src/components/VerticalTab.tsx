@@ -1,24 +1,8 @@
 import * as React from 'react';
-import { Tabs, Tab, Typography, Box, Grid, Button } from '@material-ui/core';
-import { cardInfo } from './MoneyBoxCard';
+import { Tabs, Tab, Box, makeStyles } from '@material-ui/core';
 import MoneyBoxCard from './MoneyBoxCard';
 import { allInfo } from '../containers/PortfolioPage';
 
-
-const cardData: cardInfo[] = [
-    {tokenName: "Wmatic",
-    token: 50,
-    usd: "50",
-},
-{tokenName: "USDC",
-token: 100,
-usd: "50",
-},
-{tokenName: "DAI",
-token: 70,
-usd: "65",
-}
-]
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -28,8 +12,6 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
-  console.log("children",)
 
   return (
     <div
@@ -57,16 +39,25 @@ type TabProps = {
     data: allInfo[]
 }
 
+const useStyles = makeStyles({
+    tab: {
+        padding: "0",
+        maxHeight: "35px",
+    }
+  });
+
 export default function VerticalTabs({data}: TabProps) {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: any) => {
+  const classes = useStyles();
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
 };
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224, }}
+      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224, alignItems: "center"}}
     >
     <Box sx={{minWidth: "150px"}}>
       <Tabs
@@ -76,11 +67,11 @@ export default function VerticalTabs({data}: TabProps) {
         onChange={handleChange}
         aria-label="Vertical tabs example"
       >
-        {data.map((item) => <Tab label={item.box.name} {...a11yProps(Number(item.box.id))}  />)}
+        {data.map((item, index) => <Tab className={classes.tab} label={item.box.name} {...a11yProps(Number(index))}  />)}
       </Tabs>
       </Box>
       <Box sx={{padding: "15px"}}>
-      {data.map(item => <TabPanel value={Number(item.box.id)} index={Number(item.box.id)}>
+      {data.map((item, index) => <TabPanel value={value} index={index} key={index}>
         <MoneyBoxCard boxes={item.card} />
       </TabPanel>)}
       </Box>

@@ -27,8 +27,29 @@ usd: "50",
 {tokenName: "DAI",
 token: 70,
 usd: "65",
+}],
+},
+{
+    box: {
+        id: "4",
+        name: "Spending",
+        percent: 20,
+        onMoneyArrival: "Invest on Aave"
+    },
+    card: [  {tokenName: "Weth",
+    token: 20,
+    usd: "23",
+},
+{tokenName: "USDT",
+token: 105,
+usd: "58",
+},
+{tokenName: "DAI",
+token: 70,
+usd: "65",
 }]
-}]
+}
+]
 
 const PortfolioPage = () => {
     return (
@@ -49,7 +70,7 @@ const PortfolioPage = () => {
                     <Box sx={{
                         margin: "15px 0px",
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "center",
                         alignItems: "center",
                         }}>
                         <Box sx={{
@@ -77,7 +98,7 @@ const PortfolioPage = () => {
                             </Grid>
                         </Box>
                         <Box sx={{
-                            maxWidth: "35%"
+                            maxWidth: "25%"
                         }}>
                         <PieChart />
                         </Box>
@@ -88,7 +109,7 @@ const PortfolioPage = () => {
                         display: "flex",
                     }}>
                     <Box  sx={{
-                            maxWidth: "35%",
+                            maxWidth: "25%",
                             margin: "20px"
                         }}>
                         <MoneyBoxPieChart />

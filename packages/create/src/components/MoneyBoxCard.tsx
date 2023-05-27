@@ -1,4 +1,6 @@
-import { Grid, Box, Typography, Button } from "@material-ui/core";
+import { Grid, Box, Typography, IconButton, makeStyles, GridProps,} from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 export type cardInfo = {
     tokenName: string,
@@ -12,20 +14,45 @@ type CardBoxProps = {
     // moneyBoxTotal: number,
 }
 
+const useStyles = makeStyles({
+    centered: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: "38px"
+    },
+  });
+
+const GridCard = ({ children, ...props }: GridProps) => {
+    const classes = useStyles();
+    return (
+        <Grid item className={classes.centered} {...props}>
+          {children}
+        </Grid>
+      );
+}
+
 const CardBox = ({card}: CardBoxProps) => {
     const {tokenName, token, usd} = card
     return (
     <>
-    <Grid item xs={2}>{tokenName}</Grid>
-        <Grid item xs={2}>{token}</Grid>
-        <Grid item xs={2}>{usd} usd</Grid>
-        <Grid item xs={5}>
+    <GridCard item xs={2}>{tokenName}</GridCard>
+        <GridCard  item xs={2}>{token}</GridCard>
+        <GridCard item xs={3}>{usd} usd</GridCard>
+        <GridCard  item xs={5}>
             <Box sx={{display: "flex"}}>
-                <Button>A</Button>
-                <Button>D</Button>
-                <Button>T</Button>
+                <IconButton color="secondary">
+                    <AddIcon />
+                </IconButton>
+                <IconButton color="secondary">
+                    <RemoveIcon />
+                </IconButton>
+                <IconButton color="secondary">
+                    <RemoveIcon />
+                </IconButton>
             </Box>
-    </Grid>
+    </GridCard>
     </>
 )}
 
