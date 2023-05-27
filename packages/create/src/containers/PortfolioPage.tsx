@@ -18,15 +18,12 @@ const data: allInfo[] = [{
     },
     card: [  {tokenName: "Wmatic",
     token: 50,
-    usd: "50",
 },
 {tokenName: "USDC",
 token: 100,
-usd: "50",
 },
 {tokenName: "DAI",
 token: 70,
-usd: "65",
 }],
 },
 {
@@ -38,15 +35,12 @@ usd: "65",
     },
     card: [  {tokenName: "Weth",
     token: 20,
-    usd: "23",
 },
 {tokenName: "USDT",
 token: 105,
-usd: "58",
 },
 {tokenName: "DAI",
 token: 70,
-usd: "65",
 }]
 }
 ]
@@ -98,7 +92,7 @@ const PortfolioPage = () => {
                             </Grid>
                         </Box>
                         <Box sx={{
-                            maxWidth: "25%"
+                            maxWidth: "30%"
                         }}>
                         <PieChart />
                         </Box>
@@ -109,7 +103,7 @@ const PortfolioPage = () => {
                         display: "flex",
                     }}>
                     <Box  sx={{
-                            maxWidth: "25%",
+                            maxWidth: "30%",
                             margin: "20px"
                         }}>
                         <MoneyBoxPieChart />

@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
 import { Grid, Box, Typography, IconButton, makeStyles, GridProps,} from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+
+import axios from "axios";
 
 export type cardInfo = {
     tokenName: string,
     token: number,
-    usd: string,
 }
 
 type CardBoxProps = {
@@ -34,12 +37,25 @@ const GridCard = ({ children, ...props }: GridProps) => {
 }
 
 const CardBox = ({card}: CardBoxProps) => {
-    const {tokenName, token, usd} = card
+    const {tokenName, token,} = card
+    const [coin, setCoin] = useState<number | null>(null)
+    useEffect(() => {
+        const fetchData = async () => {
+            const coinName= tokenName.toLowerCase()
+            try {
+              const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${coinName}`);
+              setCoin((response.data.market_data.current_price.usd).toFixed(2) * token);
+            } catch (error) {
+              console.error("error: " + error);
+            }
+          };
+          fetchData();
+    }, [])
     return (
     <>
     <GridCard item xs={2}>{tokenName}</GridCard>
         <GridCard  item xs={2}>{token}</GridCard>
-        <GridCard item xs={3}>{usd} usd</GridCard>
+        <GridCard item xs={3}>{coin ?? token} usd</GridCard>
         <GridCard  item xs={5}>
             <Box sx={{display: "flex"}}>
                 <IconButton color="secondary">
@@ -49,7 +65,7 @@ const CardBox = ({card}: CardBoxProps) => {
                     <RemoveIcon />
                 </IconButton>
                 <IconButton color="secondary">
-                    <RemoveIcon />
+                    <SwapHorizIcon />
                 </IconButton>
             </Box>
     </GridCard>
