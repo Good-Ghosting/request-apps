@@ -66,7 +66,10 @@ const PieChart = ({
   safePercentage: number;
   moneyBoxPercentage: number;
 }) => {
-  fundsData.datasets[0].data = [toTwoDecimalPlaces(moneyBoxPercentage), toTwoDecimalPlaces(safePercentage)];
+  fundsData.datasets[0].data = [
+    toTwoDecimalPlaces(moneyBoxPercentage),
+    toTwoDecimalPlaces(safePercentage),
+  ];
 
   return <Pie data={fundsData} options={options as any} />;
 };

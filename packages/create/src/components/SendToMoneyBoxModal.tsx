@@ -38,11 +38,11 @@ export const SendToMoneyBoxModal: React.FC<SendToMoneyBoxModalProps> = ({
 
   const handleSend = async () => {
     const selectedTokenAddress = userBalance.safe.find(
-        (balance: Balance) => balance.token === selectedToken
+      (balance: Balance) => balance.token === selectedToken
     )?.tokenAddress;
     if (!selectedTokenAddress) {
-        console.log("No token address found");
-        return;
+      console.log("No token address found");
+      return;
     }
     await onSend(String(amount), selectedTokenAddress);
   };

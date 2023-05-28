@@ -135,8 +135,6 @@ export const MoneyBoxProvider: React.FC = ({ children }) => {
 
       if (!boxAddress) return;
 
-      console.log("boxAddress", boxAddress[0]);
-
       const contract = MoneyBoxesAbi__factory.connect(
         boxAddress[0],
         library.getSigner()
@@ -164,8 +162,6 @@ export const MoneyBoxProvider: React.FC = ({ children }) => {
   const getUserBalance = useCallback(async () => {
     if (!library || !account) return;
 
-    console.log("start getUserBalance");
-
     const coinGeckoAPI = "https://api.coingecko.com/api/v3/coins/";
 
     const xDaiPrice: number = await axios
@@ -183,17 +179,11 @@ export const MoneyBoxProvider: React.FC = ({ children }) => {
       })
     );
 
-    console.log("ERC20TokensPrice", ERC20TokensPrice);
-
     const safeBalanceNative = await library
       .getBalance(safeAddress)
       .then((balance) => {
-        console.log("balance", balance.toString());
         return bigNumberBalanceToNumber(balance, 18); //xDai is 18 decimals
       });
-
-    console.log("safeBalanceNative", safeBalanceNative);
-    console.log("xDaiPrice", xDaiPrice);
 
     const userBalance: UserBalance = {
       safe: [
@@ -226,12 +216,8 @@ export const MoneyBoxProvider: React.FC = ({ children }) => {
       });
     });
 
-    console.log("userBalance1", userBalance);
-
     const boxContract = await getMoneyBoxContract(safeAddress);
     if (!boxContract) return userBalance;
-
-    console.log("boxContract", boxContract);
 
     const numberOfBoxes = await boxContract.getNumberOfBoxes();
 

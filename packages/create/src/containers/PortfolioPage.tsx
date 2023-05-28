@@ -95,8 +95,6 @@ const PortfolioPage = () => {
 
   const hasLoadedUserData = !!userBalances;
 
-  console.log("userBalances", userBalances);
-
   const totalValueUSDInSafe =
     userBalances?.safe.reduce((acc, balance) => acc + balance.amountUSD, 0) ??
     0;
