@@ -11,7 +11,7 @@ type MoneyBoxInputProps = {
 
 const MoneyBoxInput = ({handleSubmit}: MoneyBoxInputProps) => {
     const [name, setName] = useState<string>("");
-    const [percent, setPercent] = useState<number>(0);
+    const [percent, setPercent] = useState<number>(10);
     const [arrival, setArrival] = useState<string>("");
 
     const handleFormSubmit = () => {
@@ -39,6 +39,7 @@ const MoneyBoxInput = ({handleSubmit}: MoneyBoxInputProps) => {
          variant="outlined" 
          type="number"
          value={percent}
+        
          onChange={(e) => setPercent(Number(e.target.value))}
          />
         </CenteredGridItem>

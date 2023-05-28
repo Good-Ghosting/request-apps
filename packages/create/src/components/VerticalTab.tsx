@@ -72,7 +72,7 @@ export default function VerticalTabs({data}: TabProps) {
       </Box>
       <Box sx={{padding: "15px"}}>
       {data.map((item, index) => <TabPanel value={value} index={index} key={index}>
-        <MoneyBoxCard boxes={item.card} />
+        <MoneyBoxCard boxes={item.card} boxId={item.box.id} />
       </TabPanel>)}
       </Box>
     </Box>
