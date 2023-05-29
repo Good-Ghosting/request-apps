@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { RLogo } from "request-ui";
+import Logo from '../assets/img/hacklogo.png'
 import { Link, Hidden } from "@material-ui/core";
 
 import {
@@ -164,6 +164,20 @@ export const RequestAppBar = ({
       >
         <Typography variant="h4">Create a request</Typography>
       </NavLink>
+      <NavLink
+        activeClassName={classes.active}
+        className={className}
+        to="/set-up"
+      >
+        <Typography variant="h4">Set up</Typography>
+      </NavLink>
+      <NavLink
+        activeClassName={classes.active}
+        className={className}
+        to="/portfolio"
+      >
+        <Typography variant="h4">Portfolio</Typography>
+      </NavLink>
       <Hidden smUp>
         <Link id="intercom-trigger">
           <Typography variant="h4">Get Help</Typography>
@@ -178,7 +192,7 @@ export const RequestAppBar = ({
         <Box display="flex" alignItems="center" flex={1} height="100%">
           <Box marginRight={"20px"}>
             <NavLink to="/">
-              <RLogo />
+              <img src={Logo} alt="logo" style={{width: "150px", height: "auto"}} />
             </NavLink>
           </Box>
           <Box

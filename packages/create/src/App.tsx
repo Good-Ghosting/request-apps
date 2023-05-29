@@ -1,7 +1,6 @@
 import { providers } from "ethers";
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Intercom from "react-intercom";
 import { ErrorBoundary, theme, RAlert, useMobile, Analytics } from "request-ui";
 
 import {
@@ -19,12 +18,15 @@ import ErrorPage from "./containers/ErrorPage";
 import NotFoundPage from "./containers/NotFoundPage";
 import RequestPage from "./containers/RequestPage";
 import DashboardPage from "./containers/DashboardPage";
+import SetUpPage from "./containers/SetUpPage";
+import PortfolioPage from "./containers/PortfolioPage";
 import { useEagerConnect } from "./hooks/useEagerConnect";
 import { useInactiveListener } from "./hooks/useInactiveListnerer";
 import { useConnectedUser, UserProvider } from "./contexts/UserContext";
 import { injected } from "./connectors";
 import { CurrencyProvider, getCurrencies } from "request-shared";
 import { ChangeChainLink } from "./components/ChangeChainLink";
+import { MoneyBoxProvider } from "./contexts/MoneyBoxContext";
 
 const useStyles = makeStyles(() => ({
   paper: {
@@ -49,11 +51,6 @@ const AppInner: React.FC = () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <Intercom
-          appID="mmdbekc3"
-          custom_launcher_selector="#intercom-trigger"
-          hide_default_launcher={isMobile}
-        />
         <CssBaseline />
         <RequestAppBar
           network={chainId}
@@ -128,6 +125,8 @@ const AppInner: React.FC = () => {
               <Switch>
                 <Route path="/" exact component={CreatePage} />
                 <Route path="/dashboard" component={DashboardPage} />
+                <Route path="/set-up" component={SetUpPage} />
+                <Route path="/portfolio" component={PortfolioPage} />
                 <Route path="/:id([0-9a-fA-F]+)" component={RequestPage} />
                 <Route path="*" component={NotFoundPage} />
               </Switch>
@@ -148,11 +147,13 @@ const App = () => {
       component={ErrorPage}
     >
       <Web3ReactProvider
-        getLibrary={provider => new providers.Web3Provider(provider)}
+        getLibrary={(provider) => new providers.Web3Provider(provider)}
       >
         <CurrencyProvider currencies={getCurrencies()}>
           <UserProvider>
-            <AppInner />
+            <MoneyBoxProvider>
+              <AppInner />
+            </MoneyBoxProvider>
           </UserProvider>
         </CurrencyProvider>
       </Web3ReactProvider>
